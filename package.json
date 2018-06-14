@@ -1,0 +1,43 @@
+{
+  "name": "numa_pro",
+  "version": "1.0.0",
+  "description": "## 仮タイトル「」",
+  "main": "index.js",
+  "dependencies": {
+    "npm": "^6.1.0"
+  },
+  "devDependencies": {
+    "bootstrap": "^4.1.1",
+    "eslint": "^4.19.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean-css": "^3.9.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-plumber": "^1.2.0",
+    "gulp-rename": "^1.2.3",
+    "gulp-sass": "^4.0.1",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-svgmin": "^1.2.4",
+    "gulp-typescript": "^4.0.2",
+    "gulp-uglify": "^3.0.0",
+    "imagemin-mozjpeg": "^7.0.0",
+    "imagemin-pngquant": "^5.1.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.14.3",
+    "typescript": "^2.8.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/flanny7/NumaProWebSite.git"
+  },
+  "bugs": {
+    "url": "https://github.com/flanny7/NumaProWebSite/issues"
+  },
+  "homepage": "https://github.com/flanny7/NumaProWebSite#readme"
+}
