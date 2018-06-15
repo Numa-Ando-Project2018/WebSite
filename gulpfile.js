@@ -11,6 +11,7 @@ const imagemin = require('gulp-imagemin');
 const mozjpeg = require('imagemin-mozjpeg');
 const pngquant = require('imagemin-pngquant');
 const svgmin = require('gulp-svgmin');
+const browsersync = require('browser-sync');
 
 const typescript = require('gulp-typescript');
 
@@ -134,6 +135,15 @@ gulp.task('imagemin.svg', function(){
 
 gulp.task('imagemin', ['imagemin.jpg', 'imagemin.png', 'imagemin.svg']);
 tasks.push('imagemin');
+
+/// browser-sync
+
+gulp.task('browser-sync', function() {
+  return browserSync.init(null, {
+      server: './dist/index.html'
+  });
+});
+tasks.push('browser-sync');
 
 /// Default task
 
