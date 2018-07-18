@@ -11,9 +11,9 @@ const imagemin = require('gulp-imagemin');
 const mozjpeg = require('imagemin-mozjpeg');
 const pngquant = require('imagemin-pngquant');
 const svgmin = require('gulp-svgmin');
-const browsersync = require('browser-sync');
+const browser_sync = require('browser-sync');
 
-const typescript = require('gulp-typescript');
+const gulp_typescript = require('gulp-typescript');
 
 var paths = {
   "src_dir" : './src/',
@@ -22,7 +22,7 @@ var paths = {
   "src_html" : './src/' + '*.html',
 
   "src_css" : './src/' + 'css/',
-  "src_style_scss" : './src/' + 'css/' + 'style.scss',
+  "src_style_scss" : './src/' + 'css/' + '*.scss',
   "dist_css" : './dist/' + 'css/',
   
   "src_js" : './src/' + 'js/',
@@ -30,6 +30,8 @@ var paths = {
   "src_js_main" : './src/' + 'js_main/',
   "src_uglify" : './src/' + 'js_main/' + 'main.js',
   "dist_js" : './dist/' + 'js/',
+
+  "src_ts" : './src/' + 'ts',
 
   "src_image" : './src/' + 'image/',
   "src_image_jpg" : './src/' + 'image/' + '*.+(jpg)',
@@ -42,7 +44,7 @@ var paths = {
 var watchPaths = [
   paths["src_html"],
   paths["src_css"],
-  paths["src_css"],
+  paths["src_style_scss"],
   paths["src_concat"],
   paths["src_uglify"],
   paths["src_image_jpg"],
@@ -106,6 +108,17 @@ gulp.task('js.uglify', function() {
 gulp.task('js', ['js.concat', 'js.uglify']);
 tasks.push('js');
 
+/// TS tasks
+
+gulp.task('ts', function() {
+    return gulp.src(paths["src_ts"])
+        .pipe(gulp_typescript({
+            target: 'ES5',
+            removeComments: true
+        }))
+        .js.pipe(gulp.dest(paths["src_concat"]));
+});
+
 /// Image tasks ----------------
 
 gulp.task('imagemin.jpg', function(){
@@ -139,7 +152,7 @@ tasks.push('imagemin');
 /// browser-sync
 
 gulp.task('browser-sync', function() {
-  return browserSync.init(null, {
+  return browser_sync.init(null, {
       server: './dist/index.html'
   });
 });
