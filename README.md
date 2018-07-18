@@ -39,9 +39,26 @@
 
 ``` terminal
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
 
+```
 brew install nodebrew
+```
 
+```
+vi ~/.bash_profile
+```
+
+```
+NODEBREW_HOME=/usr/local/var/nodebrew/current
+export NODEBREW_HOME
+export NODEBREW_ROOT=/usr/local/var/nodebrew
+export PATH=$PATH:$NODEBREW_HOME/bin
+```
+
+```
 git clone "https://github.com/Numa-Ando-Project2018/WebSite.git"
+```
+```
 npm 
 ```
