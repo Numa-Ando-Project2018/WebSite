@@ -7,6 +7,8 @@
     "npm": "^6.1.0"
   },
   "devDependencies": {
+    "@types/createjs": "0.0.29",
+    "@types/jquery": "^3.3.2",
     "bootstrap": "^4.1.1",
     "browser-sync": "^2.24.4",
     "eslint": "^4.19.1",
@@ -20,12 +22,13 @@
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.4",
     "gulp-svgmin": "^1.2.4",
-    "gulp-typescript": "^4.0.2",
+    "gulp-typescript": "^5.0.0-alpha.1",
     "gulp-uglify": "^3.0.0",
     "imagemin-mozjpeg": "^7.0.0",
     "imagemin-pngquant": "^5.1.0",
     "jquery": "^3.3.1",
     "popper.js": "^1.14.3",
+    "tsify": "^4.0.0",
     "typescript": "^2.8.3"
   },
   "scripts": {
