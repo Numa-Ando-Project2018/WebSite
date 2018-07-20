@@ -41,18 +41,14 @@ var paths = {
   "dist_image" : './dist/' + 'image/',
 }
 
-var watchPaths = [
-  paths["src_html"],
-  paths["src_css"],
-  paths["src_style_scss"],
-  paths["src_concat"],
-  paths["src_uglify"],
-  paths["src_image_jpg"],
-  paths["src_image_png"],
-  paths["src_image_svg"],
-];
-
-var tasks = []; // pushしていく
+var watchPaths = {
+  "html_path" : paths["src_html"],       //"html_task" : '',
+  "css_path"  : paths["src_style_scss"], //"css_task"  : '',
+  "js_path"   : paths["src_concat"],     //"js_task"   : '',
+  "jpg_path"  : paths["src_image_jpg"],  //"jpg_task"  : '',
+  "png_path"  : paths["src_image_png"],  //"png_task"  : '',
+  "svg_path"  : paths["src_image_svg"],  //"svg_task"  : '',
+};
 
 /// HTML tasks ----------------
 
@@ -61,8 +57,7 @@ gulp.task('html', function () {
     .pipe(plumber())
     .pipe(gulp.dest(paths["dist_dir"]));
 })
-
-tasks.push('html');
+watchPaths['html_task'] = ['html'];
 
 /// CSS tasks ----------------
 
@@ -87,7 +82,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('css', ['sass']);
-tasks.push('css');
+watchPaths['css_task'] = ['css'];
 
 /// JS tasks ----------------
 
@@ -106,7 +101,7 @@ gulp.task('js.uglify', function() {
 });
 
 gulp.task('js', ['js.concat', 'js.uglify']);
-tasks.push('js');
+watchPaths['js_task'] = ['js'];
 
 /// TS tasks
 
@@ -128,6 +123,7 @@ gulp.task('imagemin.jpg', function(){
     .pipe(gulp.dest(paths["src_image_min"]))
     .pipe(gulp.dest(paths["dist_image"]));
 });
+watchPaths['jpg_task'] = ['imagemin.jpg'];
 
 gulp.task('imagemin.png', function(){
   gulp.src(paths["src_image_png"])
@@ -137,6 +133,7 @@ gulp.task('imagemin.png', function(){
     .pipe(gulp.dest(paths["src_image_min"]))
     .pipe(gulp.dest(paths["dist_image"]));
 });
+watchPaths['png_task'] = ['imagemin.png'];
 
 gulp.task('imagemin.svg', function(){
   gulp.src(paths["src_image_svg"])
@@ -145,22 +142,25 @@ gulp.task('imagemin.svg', function(){
     .pipe(gulp.dest(paths["src_image_min"]))
     .pipe(gulp.dest(paths["dist_image"]));
 });
-
-gulp.task('imagemin', ['imagemin.jpg', 'imagemin.png', 'imagemin.svg']);
-tasks.push('imagemin');
+watchPaths['svg_task'] = ['imagemin.svg'];
 
 /// browser-sync
 
-gulp.task('browser-sync', function() {
-  return browser_sync.init(null, {
-      server: './dist/index.html'
-  });
-});
-tasks.push('browser-sync');
+// gulp.task('browser-sync', function() {
+//   return browser_sync.init(null, {
+//       server: './dist/index.html'
+//   });
+// });
+// tasks.push('browser-sync');
 
 /// Default task
 
 gulp.task('default', () => {
   console.log('default');
-  gulp.watch(watchPaths, tasks);
+  gulp.watch(watchPaths['html_path'], watchPaths['html_task']);
+  gulp.watch(watchPaths['css_path'],  watchPaths['css_task']);
+  gulp.watch(watchPaths['js_path'],   watchPaths['js_task']);
+  gulp.watch(watchPaths['jpg_path'],  watchPaths['jpg_task']);
+  gulp.watch(watchPaths['png_path'],  watchPaths['png_task']);
+  gulp.watch(watchPaths['svg_path'],  watchPaths['svg_task']);
 });
